@@ -1,0 +1,728 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --panel: #ffffff;
+  --ink: #342b24;
+  --muted: #786d63;
+  --accent: #f05a47;
+  --accent-dark: #c93e2d;
+  --yellow: #ffd84d;
+  --shelf-dark: #9c6137;
+  --success: #2e9b59;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, #ffffff 0, transparent 30%),
+    linear-gradient(135deg, #fff9e8, #ffe9b4);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+button {
+  font: inherit;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* 全画面 */
+.full-screen {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+/* タップ待ち */
+.tap-screen {
+  background:
+    radial-gradient(circle at center, #fffdf5, #ffe7a3);
+}
+
+.screen-button {
+  border: 0;
+  color: inherit;
+  background: transparent;
+}
+
+.tap-screen-content {
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+  cursor: pointer;
+  animation: tapFloat 1.2s infinite alternate ease-in-out;
+}
+
+.tap-icon {
+  font-size: 70px;
+}
+
+.tap-message {
+  font-size: clamp(20px, 5vw, 32px);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+@keyframes tapFloat {
+  from { transform: translateY(0); }
+  to { transform: translateY(-12px); }
+}
+
+/* タイトル */
+.title-screen {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(255,255,255,.9), transparent 30%),
+    linear-gradient(145deg, #fff7d6, #ffc960);
+}
+
+.title-screen::before {
+  content: "半額";
+  position: absolute;
+  top: -55px;
+  right: -40px;
+  display: grid;
+  place-items: center;
+  width: 190px;
+  height: 190px;
+  border: 8px solid #bf2d1d;
+  border-radius: 50%;
+  color: #bf2d1d;
+  background: #ffe247;
+  font-size: 48px;
+  font-weight: 1000;
+  transform: rotate(15deg);
+  opacity: .3;
+}
+
+.title-screen-content {
+  position: relative;
+  z-index: 1;
+  width: min(520px, 100%);
+  text-align: center;
+}
+
+.title-sub {
+  margin: 0 0 10px;
+  color: #d84832;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .16em;
+}
+
+.title-logo {
+  margin: 0;
+  font-size: clamp(62px, 14vw, 115px);
+  font-weight: 1000;
+  line-height: .85;
+  text-shadow:
+    4px 4px 0 #fff,
+    8px 8px 0 #f05a47;
+}
+
+.title-catch {
+  margin: 28px 0 18px;
+  font-size: clamp(17px, 4vw, 24px);
+  font-weight: 900;
+}
+
+.title-best-score {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  width: fit-content;
+  margin: 0 auto 26px;
+  padding: 10px 20px;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 5px 0 var(--ink);
+}
+
+.title-best-score span {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.title-best-score strong {
+  color: var(--accent);
+  font-size: 36px;
+}
+
+.title-buttons {
+  display: grid;
+  gap: 14px;
+  width: min(320px, 100%);
+  margin: 0 auto;
+}
+
+.title-button,
+.primary-button {
+  padding: 14px 22px;
+  border: 3px solid var(--ink);
+  border-radius: 15px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 6px 0 var(--ink);
+  transition: transform .08s ease, box-shadow .08s ease;
+}
+
+.title-button {
+  width: 100%;
+}
+
+.title-button.primary,
+.primary-button {
+  color: #fff;
+  background: var(--accent);
+}
+
+.title-button.secondary {
+  color: var(--ink);
+  background: #fff;
+}
+
+.title-button:active,
+.primary-button:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 var(--ink);
+}
+
+/* ゲーム本体 */
+.game-shell {
+  width: min(920px, 100%);
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: end;
+  margin-bottom: 16px;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: .12em;
+}
+
+.game-header h1 {
+  margin: 0;
+  font-size: clamp(32px, 7vw, 64px);
+  line-height: 1;
+}
+
+.score-board {
+  display: flex;
+  gap: 10px;
+}
+
+.score-board > div {
+  min-width: 100px;
+  padding: 10px 14px;
+  border-radius: 16px;
+  background: var(--panel);
+  box-shadow: 0 8px 24px rgba(93,62,31,.12);
+  text-align: center;
+}
+
+.score-board span {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.score-board strong {
+  font-size: 30px;
+}
+
+.target-panel {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 84px;
+  margin-bottom: 12px;
+  padding: 14px 18px;
+  border: 3px solid var(--ink);
+  border-radius: 18px;
+  background: var(--yellow);
+  box-shadow: 0 7px 0 var(--ink);
+}
+
+.target-panel p {
+  margin: 0;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.target-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.target-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: #fff;
+  font-weight: 800;
+}
+
+.target-chip-image {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.target-chip.done {
+  opacity: .35;
+  text-decoration: line-through;
+}
+
+.game-area {
+  position: relative;
+  overflow: hidden;
+  min-height: 560px;
+  padding: 16px;
+  border: 5px solid var(--ink);
+  border-radius: 24px;
+  background: #f7f1e8;
+  box-shadow: 0 12px 0 var(--ink);
+}
+
+/* 3段の商品棚画像を背景にし、その上に3×3の商品を重ねる */
+.shelf {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 0 12px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 520px;
+  padding: 6% 4% 3%;
+  background-image: url("assets/images/shelf.png");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* 商品ボタン自体は透明。棚の上に商品画像だけ見える */
+.product {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 0;
+  padding: 8px;
+  border: 0;
+  border-radius: 16px;
+  background: transparent;
+  box-shadow: none;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  transition: transform .08s ease, filter .15s ease, opacity .3s ease;
+}
+
+.product:active {
+  transform: translateY(4px) scale(.98);
+}
+
+.product-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 230px;
+  max-height: 135px;
+  object-fit: contain;
+  object-position: center;
+  filter: drop-shadow(0 4px 3px rgba(55, 35, 20, .16));
+  pointer-events: none;
+}
+
+
+.product-name {
+  position: absolute;
+  left: 50%;
+  bottom: 3px;
+  transform: translateX(-50%);
+  max-width: 92%;
+  padding: 2px 7px;
+  border-radius: 999px;
+  color: #3a3029;
+  background: rgba(255,255,255,.82);
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.25;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.discount-sticker {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  display: none;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border: 3px solid #b3291c;
+  border-radius: 50%;
+  color: #b3291c;
+  background: var(--yellow);
+  font-size: 15px;
+  font-weight: 1000;
+  transform: translate(-50%, -50%) rotate(10deg);
+  box-shadow: 0 3px 0 rgba(84,35,25,.25);
+  z-index: 4;
+}
+
+.product.stamped .discount-sticker {
+  display: grid;
+  animation: stampPop .18s ease-out;
+}
+
+.product.taken {
+  opacity: .28;
+  transform: scale(.92);
+}
+
+.clerk-hand,
+.customer-hand {
+  position: absolute;
+  z-index: 7;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.clerk-hand {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 60px;
+  transition-property: left, top;
+  transition-timing-function: cubic-bezier(.2,.8,.2,1);
+}
+
+.sticker-roll {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: 3px solid #b3291c;
+  border-radius: 50%;
+  color: #b3291c;
+  background: var(--yellow);
+  font-size: 14px;
+  font-weight: 1000;
+  transform: rotate(-12deg);
+}
+
+.hand-emoji {
+  transform: rotate(105deg);
+}
+
+.clerk-hand.stamping {
+  animation: handStamp .2s ease;
+}
+
+.customer-hand {
+  font-size: 76px;
+  transition: left .32s ease-out, transform .18s ease;
+}
+
+.customer-hand-emoji {
+  display: block;
+  transform: rotate(-90deg);
+}
+
+.customer-hand.holding-product {
+  transform: translate(-50%, -50%) scale(.9);
+}
+
+.product.customer-taken {
+  opacity: 0;
+  transform: translateX(130px) scale(.6) rotate(12deg);
+  transition: transform .38s ease, opacity .28s ease;
+}
+
+.message {
+  position: absolute;
+  z-index: 8;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 22px;
+  border: 4px solid var(--ink);
+  border-radius: 16px;
+  background: #fff;
+  font-size: clamp(24px, 5vw, 48px);
+  font-weight: 1000;
+  box-shadow: 0 8px 0 var(--ink);
+  pointer-events: none;
+}
+
+.message.success { color: var(--success); }
+.message.warning { color: var(--accent); }
+
+.controls {
+  margin-top: 24px;
+  text-align: center;
+}
+
+#statusText {
+  min-height: 1.5em;
+  color: var(--muted);
+}
+
+/* モーダル */
+.modal {
+  position: fixed;
+  z-index: 120;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(34,25,18,.72);
+}
+
+.modal-card {
+  width: min(460px, 100%);
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  padding: 30px;
+  border: 4px solid var(--ink);
+  border-radius: 22px;
+  background: #fff;
+  text-align: center;
+  box-shadow: 0 10px 0 var(--ink);
+}
+
+.modal-card h2 {
+  margin: 4px 0 14px;
+  font-size: 40px;
+}
+
+.modal-label {
+  margin: 0;
+  color: var(--accent);
+  font-weight: 1000;
+  letter-spacing: .15em;
+}
+
+.howto-list {
+  padding-left: 25px;
+  text-align: left;
+  line-height: 1.8;
+}
+
+.howto-warning {
+  display: grid;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.howto-warning p {
+  margin: 0 0 4px;
+  font-weight: 900;
+}
+
+.howto-warning span {
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: #fff0ed;
+  font-weight: 700;
+}
+
+.result-score {
+  font-size: 20px;
+}
+
+.result-score strong {
+  color: var(--accent);
+  font-size: 44px;
+}
+
+@keyframes stampPop {
+  from { transform: translate(-50%, -50%) rotate(10deg) scale(1.8); opacity: 0; }
+  to { transform: translate(-50%, -50%) rotate(10deg) scale(1); opacity: 1; }
+}
+
+@keyframes handStamp {
+  50% {
+    transform: translate(-50%, -50%) translateY(20px) scale(.92);
+  }
+}
+
+@media (max-width: 640px) {
+  body { padding: 10px; }
+
+  .game-header {
+    align-items: center;
+  }
+
+  .score-board > div {
+    min-width: 76px;
+    padding: 8px;
+  }
+
+  .score-board strong {
+    font-size: 24px;
+  }
+
+  .target-panel {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .game-area {
+    min-height: 500px;
+    padding: 8px;
+  }
+
+  .shelf {
+    min-height: 470px;
+    gap: 0 5px;
+    padding: 7% 3% 3%;
+  }
+
+  .product {
+    padding: 5px 2px;
+  }
+
+  .product-image {
+    max-height: 118px;
+  }
+
+  .product-name {
+    font-size: 10px;
+  }
+
+  .discount-sticker {
+    width: 48px;
+    height: 48px;
+    font-size: 12px;
+  }
+
+  .clerk-hand {
+    font-size: 48px;
+  }
+
+  .sticker-roll {
+    width: 46px;
+    height: 46px;
+    font-size: 11px;
+  }
+
+  .modal-card {
+    padding: 24px 18px;
+  }
+}
+
+
+/* ゲームオーバー画面のボタン */
+.game-over-buttons {
+  display: grid;
+  gap: 12px;
+  width: min(280px, 100%);
+  margin: 18px auto 0;
+}
+
+.game-over-buttons .primary-button,
+.game-over-buttons .secondary-button {
+  width: 100%;
+  margin: 0;
+}
+
+.secondary-button {
+  padding: 14px 22px;
+  border: 3px solid var(--ink);
+  border-radius: 15px;
+  color: var(--ink);
+  background: #ffffff;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 6px 0 var(--ink);
+  transition:
+    transform 0.08s ease,
+    box-shadow 0.08s ease;
+}
+
+.secondary-button:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 var(--ink);
+}
+
+/* =========================================================
+   半額ハンター：クレジット機能
+   style.css の末尾に追加
+========================================================= */
+
+.credit-card {
+  width: min(92vw, 560px);
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.credit-content {
+  margin: 24px 0 28px;
+  text-align: left;
+}
+
+.credit-section + .credit-section {
+  margin-top: 30px;
+}
+
+.credit-section h3 {
+  margin: 0 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.12);
+  font-size: 1.15rem;
+}
+
+.credit-item {
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+.credit-item:last-child {
+  margin-bottom: 0;
+}
+
+.credit-item p {
+  margin: 2px 0;
+}
+
+.credit-name {
+  font-weight: 700;
+}
+

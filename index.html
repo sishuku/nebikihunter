@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>値引きハンター</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  />
+</head>
+
+<body>
+
+  <!-- ========================================
+       最初のタップ待ち画面
+  ========================================= -->
+  <div
+    id="tapScreen"
+    class="full-screen tap-screen"
+  >
+    <div class="tap-screen-content">
+      <p class="tap-icon">
+        👆
+      </p>
+
+      <p class="tap-message">
+        画面をタップしてください
+      </p>
+    </div>
+  </div>
+
+
+  <!-- ========================================
+       タイトル画面
+  ========================================= -->
+  <div
+    id="titleScreen"
+    class="full-screen title-screen hidden"
+  >
+    <div class="title-screen-content">
+
+      <p class="title-sub">
+        SUPERMARKET REFLEX GAME
+      </p>
+
+      <h1 class="title-logo">
+        値引き<br />
+        ハンター
+      </h1>
+
+      <p class="title-catch">
+        貼られた瞬間、奪い取れ！
+      </p>
+
+      <!-- タイトル画面の最高記録 -->
+      <div class="title-best-score">
+        <span>
+          最高記録
+        </span>
+
+        <strong id="titleBestText">
+          0
+        </strong>
+
+        <span>
+          連続
+        </span>
+      </div>
+
+      <div class="title-buttons">
+
+        <button
+          id="titleStartButton"
+          class="title-button primary"
+          type="button"
+        >
+          ゲームを始める
+        </button>
+
+        <button
+          id="titleHowToButton"
+          class="title-button secondary"
+          type="button"
+        >
+          遊び方
+        </button>
+
+        <!-- クレジットボタン -->
+        <button
+          id="titleCreditButton"
+          class="title-button secondary"
+          type="button"
+        >
+          クレジット
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================
+       ゲーム画面
+  ========================================= -->
+  <main
+    id="gameScreen"
+    class="game-shell hidden"
+  >
+
+    <header class="game-header">
+
+      <div>
+        <p class="eyebrow">
+          SUPERMARKET REFLEX GAME
+        </p>
+
+        <h1>
+          半額狩人
+        </h1>
+      </div>
+
+      <div class="score-board">
+
+        <div>
+          <span>
+            連続ゲット
+          </span>
+
+          <strong id="streakText">
+            0
+          </strong>
+        </div>
+
+        <div>
+          <span>
+            ベスト
+          </span>
+
+          <strong id="bestText">
+            0
+          </strong>
+        </div>
+
+      </div>
+    </header>
+
+
+    <!-- 目当ての商品 -->
+    <section class="target-panel">
+
+      <p>
+        今回の目当て
+      </p>
+
+      <div
+        id="targetList"
+        class="target-list"
+      ></div>
+
+    </section>
+
+
+    <!-- 商品棚 -->
+    <section
+      id="gameArea"
+      class="game-area"
+      aria-label="商品棚"
+    >
+
+      <div
+        id="shelf"
+        class="shelf"
+      ></div>
+
+
+      <!-- 店員の手 -->
+      <div
+        id="clerkHand"
+        class="clerk-hand"
+        aria-hidden="true"
+      >
+        <span class="sticker-roll">
+          半額
+        </span>
+
+        <span class="hand-emoji">
+          👉
+        </span>
+      </div>
+
+
+      <!-- 他のお客の手 -->
+      <div
+        id="customerHand"
+        class="customer-hand hidden"
+        aria-hidden="true"
+      >
+        <span class="customer-hand-emoji">
+          ✋
+        </span>
+      </div>
+
+
+      <!-- GET・START・フェイントなど -->
+      <div
+        id="message"
+        class="message hidden"
+      ></div>
+
+    </section>
+
+
+    <!-- 状態メッセージ -->
+    <section class="controls">
+
+      <button
+        id="startButton"
+        class="primary-button hidden"
+        type="button"
+      >
+        ゲーム開始
+      </button>
+
+      <p id="statusText">
+        シールが貼られた目当ての商品だけをクリック！
+      </p>
+
+    </section>
+
+  </main>
+
+
+  <!-- ========================================
+       遊び方画面
+  ========================================= -->
+  <div
+    id="howToModal"
+    class="modal hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="howToTitle"
+  >
+    <div class="modal-card howto-card">
+
+      <p class="modal-label">
+        HOW TO PLAY
+      </p>
+
+      <h2 id="howToTitle">
+        遊び方
+      </h2>
+
+      <ol class="howto-list">
+
+        <li>
+          画面上部に表示される
+          「目当ての商品」を確認します。
+        </li>
+
+        <li>
+          店員が商品に半額シールを貼るまで待ちます。
+        </li>
+
+        <li>
+          目当ての商品にシールが貼られた瞬間、
+          その商品をタップします。
+        </li>
+
+      </ol>
+
+      <div class="howto-warning">
+
+        <p>
+          次の行動でゲームオーバー！
+        </p>
+
+        <span>
+          シールが貼られる前に押す
+        </span>
+
+        <span>
+          目当てではない商品を押す
+        </span>
+
+        <span>
+          他のお客さんに先に取られる
+        </span>
+
+      </div>
+
+      <button
+        id="closeHowToButton"
+        class="title-button primary"
+        type="button"
+      >
+        タイトルへ戻る
+      </button>
+
+    </div>
+  </div>
+
+
+  <!-- ========================================
+       クレジット画面
+  ========================================= -->
+  <div
+    id="creditModal"
+    class="modal hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="creditTitle"
+  >
+    <div class="modal-card credit-card">
+
+      <p class="modal-label">
+        CREDIT
+      </p>
+
+      <h2 id="creditTitle">
+        クレジット
+      </h2>
+
+      <div class="credit-content">
+
+        <section class="credit-section">
+          <h3>BGM</h3>
+
+          <div class="credit-item">
+            <p class="credit-name">
+              「スーパーマーケット」
+            </p>
+            <p>作曲：すずにこぐ</p>
+            <p>提供：DOVA-SYNDROME</p>
+          </div>
+
+          <div class="credit-item">
+            <p class="credit-name">
+              「はるがちかいよ」
+            </p>
+            <p>作曲：HiLi-ひぃ-</p>
+            <p>提供：こんとどぅふぇ</p>
+          </div>
+        </section>
+
+
+        <section class="credit-section">
+          <h3>効果音</h3>
+
+          <div class="credit-item">
+            <p class="credit-name">
+              「決定ボタン35」
+            </p>
+            <p>提供：効果音ラボ</p>
+          </div>
+
+          <div class="credit-item">
+            <p class="credit-name">
+              「コミカルな失敗音」
+            </p>
+            <p>提供：ポケットサウンド</p>
+          </div>
+
+          <div class="credit-item">
+            <p class="credit-name">
+              「クイズ ピンポン01-4（シングル）」
+            </p>
+            <p>提供：OtoLogic</p>
+          </div>
+
+          <div class="credit-item">
+            <p class="credit-name">
+              「アニメモーション16-1（高）」
+            </p>
+            <p>提供：OtoLogic</p>
+          </div>
+        </section>
+
+      </div>
+
+      <button
+        id="closeCreditButton"
+        class="title-button primary"
+        type="button"
+      >
+        タイトルへ戻る
+      </button>
+
+    </div>
+  </div>
+
+
+  <!-- ========================================
+       ゲームオーバー画面
+  ========================================= -->
+  <div
+    id="gameOverModal"
+    class="modal hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="gameOverTitle"
+  >
+    <div class="modal-card">
+
+      <p class="modal-label">
+        GAME OVER
+      </p>
+
+      <h2 id="gameOverTitle">
+        失敗！
+      </h2>
+
+      <p id="gameOverReason">
+      </p>
+
+      <p class="result-score">
+        記録
+
+        <strong id="resultStreak">
+          0
+        </strong>
+
+        連続
+      </p>
+
+      <button
+        id="retryButton"
+        class="primary-button"
+        type="button"
+      >
+        もう一度
+      </button>
+
+    </div>
+  </div>
+
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+
+</body>
+</html>
