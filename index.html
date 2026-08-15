@@ -1,778 +1,378 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 
 <head>
-  <meta charset="UTF-8" />
+
+  <meta charset="utf-8">
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
+    content="width=device-width, initial-scale=1"
+  >
 
-  <title>値引きハンター</title>
+  <meta
+    name="description"
+    content="Sishukuの公式サイト。個人制作のブラウザゲーム・PCゲームを公開しています。"
+  >
+
+  <title>
+    Sishuku | Indie Game Developer
+  </title>
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="./images/sishuku-logo.png"
+  >
 
   <link
     rel="stylesheet"
-    href="style.css"
-  />
+    href="./style.css"
+  >
+
 </head>
 
 
 <body>
 
 
-  <!-- =====================================================
-       最初のタップ待ち
-       ※ここだけ広告なし
-  ====================================================== -->
+  <!-- ========================================
+       ヘッダー
+  ========================================= -->
 
-  <div
-    id="tapScreen"
-    class="full-screen tap-screen"
-  >
+  <header class="site-header">
 
-    <div class="tap-screen-content">
+    <div class="header-inner">
 
-      <p class="tap-icon">
-        👆
-      </p>
 
-      <p class="tap-message">
-        画面をタップしてください
-      </p>
+      <!-- ロゴ -->
+
+      <a
+        class="brand"
+        href="./index.html"
+      >
+        <span>S</span>ISHUKU
+      </a>
+
+
+      <!-- ナビゲーション -->
+
+      <nav
+        class="nav"
+        aria-label="メインナビゲーション"
+      >
+
+        <a href="./index.html">
+          トップ
+        </a>
+
+        <a href="./games.html">
+          ゲーム
+        </a>
+
+        <a href="./about.html">
+          Sishukuについて
+        </a>
+
+        <a href="./privacy.html">
+          プライバシー
+        </a>
+
+        <a href="./contact.html">
+          お問い合わせ
+        </a>
+
+      </nav>
 
     </div>
 
-  </div>
+  </header>
 
 
 
-  <!-- =====================================================
-       ページ本体
-       
-       PC
-       広告 ｜ 中央コンテンツ ｜ 広告
+  <!-- ========================================
+       メイン
+  ========================================= -->
 
-       スマホ
-       中央コンテンツ
-       広告
-  ====================================================== -->
-
-  <div
-    id="gameLayout"
-    class="game-layout hidden"
-  >
+  <main>
 
 
-    <!-- =================================================
-         PC左広告
-    ================================================== -->
+    <!-- ========================================
+         HERO
+    ========================================= -->
 
-    <aside
-      class="ad-slot ad-slot-side ad-slot-left"
-      aria-label="広告スペース"
-    >
+    <section class="hero">
 
-      <div class="ad-placeholder">
 
-        <span>
-          ADVERTISEMENT
-        </span>
+      <div>
 
-        <strong>
-          広告スペース
-        </strong>
 
-        <small>
-          PC：最大300 × 600px想定
-        </small>
+        <p class="eyebrow">
+          INDIE GAME DEVELOPMENT
+        </p>
+
+
+
+        <p>
+          自分が作りたいものを作っています。
+        </p>
+
+
+        <div class="button-row">
+
+
+          <a
+            class="btn primary"
+            href="./games.html"
+          >
+            ゲームを見る
+          </a>
+
+
+          <a
+            class="btn"
+            href="./about.html"
+          >
+            Sishukuについて
+          </a>
+
+
+        </div>
+
 
       </div>
 
-    </aside>
 
 
+      <!-- Sishukuロゴ -->
 
-    <!-- =================================================
-         中央コンテンツ
-    ================================================== -->
+      <div class="hero-mark-wrap">
 
-    <div class="main-content">
+        <div class="hero-mark">
 
-
-      <!-- =============================================
-           タイトル画面
-      ============================================== -->
-
-      <div
-        id="titleScreen"
-        class="title-screen hidden"
-      >
-
-        <div class="title-screen-content">
-
-
-          <p class="title-sub">
-            SUPERMARKET REFLEX GAME
-          </p>
-
-
-          <h1 class="title-logo">
-            値引き<br />
-            ハンター
-          </h1>
-
-
-          <p class="title-catch">
-            貼られた瞬間、奪い取れ！
-          </p>
-
-
-          <!-- 最高記録 -->
-
-          <div class="title-best-score">
-
-            <span>
-              最高記録
-            </span>
-
-            <strong id="titleBestText">
-              0
-            </strong>
-
-            <span>
-              連続
-            </span>
-
-          </div>
-
-
-
-          <!-- ボタン -->
-
-          <div class="title-buttons">
-
-
-            <button
-              id="titleStartButton"
-              class="title-button primary"
-              type="button"
-            >
-              ゲームを始める
-            </button>
-
-
-            <button
-              id="titleHowToButton"
-              class="title-button secondary"
-              type="button"
-            >
-              遊び方
-            </button>
-
-
-            <button
-              id="titleCreditButton"
-              class="title-button secondary"
-              type="button"
-            >
-              クレジット
-            </button>
-
-
-          </div>
+          <img
+            src="./images/sishuku-logo.png"
+            alt="Sishuku"
+            class="sishuku-logo"
+          >
 
         </div>
 
       </div>
 
 
-
-      <!-- =============================================
-           ゲーム画面
-      ============================================== -->
-
-      <main
-        id="gameScreen"
-        class="game-shell hidden"
-      >
-
-
-        <!-- ヘッダー -->
-
-        <header class="game-header">
-
-
-          <div>
-
-            <p class="eyebrow">
-              SUPERMARKET REFLEX GAME
-            </p>
-
-            <h1>
-              値引きハンター
-            </h1>
-
-          </div>
+    </section>
 
 
 
-          <!-- スコア -->
+    <!-- ========================================
+         半額ハンター
+    ========================================= -->
 
-          <div class="score-board">
-
-
-            <div>
-
-              <span>
-                連続ゲット
-              </span>
-
-              <strong id="streakText">
-                0
-              </strong>
-
-            </div>
+    <section class="section">
 
 
-            <div>
-
-              <span>
-                ベスト
-              </span>
-
-              <strong id="bestText">
-                0
-              </strong>
-
-            </div>
+      <div class="section-head">
 
 
-          </div>
+        <div>
+
+          <p class="eyebrow">
+            FEATURED GAME
+          </p>
+
+          <h2>
+            半額ハンター
+          </h2>
+
+        </div>
 
 
-        </header>
+        <p class="section-lead">
+          スーパーの商品に半額シールが貼られた瞬間を狙う、
+          短時間で遊べる反射神経ゲームです。
+        </p>
+
+
+      </div>
 
 
 
-        <!-- =========================================
-             目当ての商品
-        ========================================== -->
+      <div class="feature-game">
 
-        <section class="target-panel">
+
+        <div class="feature-copy">
+
+
+          <span class="game-badge">
+            BROWSER GAME
+          </span>
+
+
+          <h3>
+            貼られた瞬間、奪い取れ。
+          </h3>
 
 
           <p>
-            今回の目当て
+            目当ての商品だけを見極め、
+            フェイントや他のお客さんに惑わされず
+            連続GETを目指します。
           </p>
 
 
-          <div
-            id="targetList"
-            class="target-list"
-          ></div>
-
-
-        </section>
-
-
-
-        <!-- =========================================
-             商品棚
-        ========================================== -->
-
-        <section
-          id="gameArea"
-          class="game-area"
-          aria-label="商品棚"
-        >
-
-
-          <div
-            id="shelf"
-            class="shelf"
-          ></div>
-
-
-
-          <!-- 店員の手 -->
-
-          <div
-            id="clerkHand"
-            class="clerk-hand"
-            aria-hidden="true"
+          <a
+            class="btn primary"
+            href="./games/hangaku-hunter/index.html"
           >
-
-            <span class="sticker-roll">
-              半額
-            </span>
-
-            <span class="hand-emoji">
-              👉
-            </span>
-
-          </div>
-
-
-
-          <!-- 他のお客の手 -->
-
-          <div
-            id="customerHand"
-            class="customer-hand hidden"
-            aria-hidden="true"
-          >
-
-            <span class="customer-hand-emoji">
-              ✋
-            </span>
-
-          </div>
-
-
-
-          <!-- 中央メッセージ -->
-
-          <div
-            id="message"
-            class="message hidden"
-          ></div>
-
-
-        </section>
-
-
-
-        <!-- =========================================
-             状態表示
-        ========================================== -->
-
-        <section class="controls">
-
-
-          <button
-            id="startButton"
-            class="primary-button hidden"
-            type="button"
-          >
-            ゲーム開始
-          </button>
-
-
-          <p id="statusText">
-            シールが貼られた目当ての商品だけをクリック！
-          </p>
-
-
-        </section>
-
-
-      </main>
-
-
-
-      <!-- =================================================
-           遊び方
-           
-           main-content内なので
-           PC広告を覆わない
-      ================================================== -->
-
-      <div
-        id="howToModal"
-        class="modal hidden"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="howToTitle"
-      >
-
-
-        <div class="modal-card howto-card">
-
-
-          <p class="modal-label">
-            HOW TO PLAY
-          </p>
-
-
-          <h2 id="howToTitle">
-            遊び方
-          </h2>
-
-
-          <ol class="howto-list">
-
-
-            <li>
-              画面上部に表示される
-              「目当ての商品」を確認します。
-            </li>
-
-
-            <li>
-              店員が商品に半額シールを貼るまで待ちます。
-            </li>
-
-
-            <li>
-              目当ての商品にシールが貼られた瞬間、
-              その商品をタップします。
-            </li>
-
-
-          </ol>
-
-
-
-          <div class="howto-warning">
-
-
-            <p>
-              次の行動でゲームオーバー！
-            </p>
-
-
-            <span>
-              シールが貼られる前に押す
-            </span>
-
-
-            <span>
-              目当てではない商品を押す
-            </span>
-
-
-            <span>
-              他のお客さんに先に取られる
-            </span>
-
-
-          </div>
-
-
-
-          <button
-            id="closeHowToButton"
-            class="title-button primary"
-            type="button"
-          >
-            タイトルへ戻る
-          </button>
+            プレイする
+          </a>
 
 
         </div>
+
+
+
+        <div class="feature-visual">
+          半額
+        </div>
+
+
+      </div>
+
+
+    </section>
+
+
+
+    <!-- ========================================
+         Sishuku
+    ========================================= -->
+
+    <section class="section">
+
+
+      <div class="section-head">
+
+
+        <div>
+
+          <p class="eyebrow">
+            SISHUKU
+          </p>
+
+          <h2>
+            個人でゲームを作っています。
+          </h2>
+
+        </div>
+
 
       </div>
 
 
 
-      <!-- =================================================
-           クレジット
-      ================================================== -->
-
-      <div
-        id="creditModal"
-        class="modal hidden"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="creditTitle"
-      >
+      <div class="simple-grid">
 
 
-        <div class="modal-card credit-card">
+        <article class="card">
 
 
-          <p class="modal-label">
-            CREDIT
+          <h3>
+            ゲーム一覧
+          </h3>
+
+
+          <p>
+            公開中・開発中の作品をまとめています。
           </p>
 
 
-          <h2 id="creditTitle">
-            クレジット
-          </h2>
+          <div class="button-row">
 
-
-
-          <div class="credit-content">
-
-
-            <!-- BGM -->
-
-            <section class="credit-section">
-
-
-              <h3>
-                BGM
-              </h3>
-
-
-              <div class="credit-item">
-
-                <p class="credit-name">
-                  「スーパーマーケット」
-                </p>
-
-                <p>
-                  作曲：すずにこぐ
-                </p>
-
-                <p>
-                  提供：DOVA-SYNDROME
-                </p>
-
-              </div>
-
-
-
-              <div class="credit-item">
-
-                <p class="credit-name">
-                  「はるがちかいよ」
-                </p>
-
-                <p>
-                  作曲：HiLi-ひぃ-
-                </p>
-
-                <p>
-                  提供：こんとどぅふぇ
-                </p>
-
-              </div>
-
-
-            </section>
-
-
-
-            <!-- 効果音 -->
-
-            <section class="credit-section">
-
-
-              <h3>
-                効果音
-              </h3>
-
-
-              <div class="credit-item">
-
-                <p class="credit-name">
-                  「決定ボタン35」
-                </p>
-
-                <p>
-                  提供：効果音ラボ
-                </p>
-
-              </div>
-
-
-
-              <div class="credit-item">
-
-                <p class="credit-name">
-                  「コミカルな失敗音」
-                </p>
-
-                <p>
-                  提供：ポケットサウンド
-                </p>
-
-              </div>
-
-
-
-              <div class="credit-item">
-
-                <p class="credit-name">
-                  「クイズ ピンポン01-4（シングル）」
-                </p>
-
-                <p>
-                  提供：OtoLogic
-                </p>
-
-              </div>
-
-
-
-              <div class="credit-item">
-
-                <p class="credit-name">
-                  「アニメモーション16-1（高）」
-                </p>
-
-                <p>
-                  提供：OtoLogic
-                </p>
-
-              </div>
-
-
-            </section>
-
+            <a
+              class="btn"
+              href="./games.html"
+            >
+              ゲーム一覧を見る
+            </a>
 
           </div>
 
 
-
-          <button
-            id="closeCreditButton"
-            class="title-button primary"
-            type="button"
-          >
-            タイトルへ戻る
-          </button>
+        </article>
 
 
-        </div>
+
+        <article class="card">
+
+
+
+
+          <p>
+            Sishukuついて掲載しています。
+          </p>
+
+
+          <div class="button-row">
+
+            <a
+              class="btn"
+              href="./about.html"
+            >
+              詳しく見る
+            </a>
+
+          </div>
+
+
+        </article>
+
 
       </div>
 
 
-
-      <!-- =================================================
-           ゲームオーバー
-      ================================================== -->
-
-      <div
-        id="gameOverModal"
-        class="modal hidden"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="gameOverTitle"
-      >
+    </section>
 
 
-        <div class="modal-card">
-
-
-          <p class="modal-label">
-            GAME OVER
-          </p>
-
-
-          <h2 id="gameOverTitle">
-            失敗！
-          </h2>
-
-
-          <p id="gameOverReason">
-          </p>
-
-
-          <p class="result-score">
-
-            記録
-
-            <strong id="resultStreak">
-              0
-            </strong>
-
-            連続
-
-          </p>
+  </main>
 
 
 
-          <div class="game-over-buttons">
+  <!-- ========================================
+       フッター
+  ========================================= -->
+
+  <footer class="site-footer">
+
+    <div class="footer-inner">
 
 
-            <button
-              id="retryButton"
-              class="primary-button"
-              type="button"
-            >
-              もう一度
-            </button>
+      <div>
+        © 2026 Sishuku
+      </div>
 
 
-            <button
-              id="backToTitleButton"
-              class="secondary-button"
-              type="button"
-            >
-              タイトルへ戻る
-            </button>
+      <div class="footer-links">
 
+        <a href="./about.html">
+          Sishukuについて
+        </a>
 
-          </div>
+        <a href="./privacy.html">
+          プライバシーポリシー
+        </a>
 
-
-        </div>
+        <a href="./contact.html">
+          お問い合わせ
+        </a>
 
       </div>
 
 
     </div>
 
-
-
-    <!-- =================================================
-         PC右広告
-    ================================================== -->
-
-    <aside
-      class="ad-slot ad-slot-side ad-slot-right"
-      aria-label="広告スペース"
-    >
-
-      <div class="ad-placeholder">
-
-        <span>
-          ADVERTISEMENT
-        </span>
-
-        <strong>
-          広告スペース
-        </strong>
-
-        <small>
-          PC：最大300 × 600px想定
-        </small>
-
-      </div>
-
-    </aside>
-
-
-
-    <!-- =================================================
-         スマホ・タブレット広告
-    ================================================== -->
-
-    <aside
-      class="ad-slot ad-slot-bottom"
-      aria-label="広告スペース"
-    >
-
-      <div class="ad-placeholder ad-placeholder-bottom">
-
-        <span>
-          ADVERTISEMENT
-        </span>
-
-        <strong>
-          広告スペース
-        </strong>
-
-        <small>
-          スマホ：横幅に合わせて表示
-        </small>
-
-      </div>
-
-    </aside>
-
-
-  </div>
-
-
-
-  <!-- JavaScript -->
-
-  <script src="script.js"></script>
+  </footer>
 
 
 </body>
